@@ -24,7 +24,7 @@ output "api_gateway_usage_plans_product_code" {
 }
 output "api_gateway_usage_plans_quota_settings" {
   description = "Map of quota_settings values across all api_gateway_usage_plans, keyed the same as var.api_gateway_usage_plans"
-  value       = { for k, v in aws_api_gateway_usage_plan.api_gateway_usage_plans : k => v.quota_settings if v.quota_settings != null && length(v.quota_settings) > 0 }
+  value       = { for k, v in aws_api_gateway_usage_plan.api_gateway_usage_plans : k => one(v.quota_settings) if v.quota_settings != null && length(v.quota_settings) > 0 }
 }
 output "api_gateway_usage_plans_region" {
   description = "Map of region values across all api_gateway_usage_plans, keyed the same as var.api_gateway_usage_plans"
@@ -40,6 +40,6 @@ output "api_gateway_usage_plans_tags_all" {
 }
 output "api_gateway_usage_plans_throttle_settings" {
   description = "Map of throttle_settings values across all api_gateway_usage_plans, keyed the same as var.api_gateway_usage_plans"
-  value       = { for k, v in aws_api_gateway_usage_plan.api_gateway_usage_plans : k => v.throttle_settings if v.throttle_settings != null && length(v.throttle_settings) > 0 }
+  value       = { for k, v in aws_api_gateway_usage_plan.api_gateway_usage_plans : k => one(v.throttle_settings) if v.throttle_settings != null && length(v.throttle_settings) > 0 }
 }
 
